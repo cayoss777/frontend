@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" class="transition duration-500">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colegio José Sepulveda-Cañete | Sanny Garin</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<style>
+        
+  /* Fondo con imagen y degradado - Modo claro */
+  .bg-with-image {
+    background-image: 
+      linear-gradient(
+        180deg,
+        rgba(99, 102, 241, 0.55) 0%,
+        rgba(99, 102, 241, 0.35) 40%,
+        rgba(255, 255, 255, 0.15) 100%
+      ),
+      url("docentes/img/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Fondo para modo oscuro */
+  .dark .bg-with-image {
+    background-image: 
+      linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.92) 0%,
+        rgba(30, 41, 59, 0.85) 50%,
+        rgba(0, 0, 0, 0.75) 100%
+      ),
+      url("docentes/img/fondo.jpg");
+  }
+
+  /* ========== SWITCH DE TEMA ========== */
+  .theme-switch {
+    position: relative;
+    width: 72px;
+    height: 36px;
+    border-radius: 40px;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.2);
+  }
+  
+  .theme-switch:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  
+  .theme-switch-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  
+  .theme-switch-knob svg {
+    width: 18px;
+    height: 18px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Modo oscuro */
+  .dark .theme-switch {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.1);
+  }
+  
+  .dark .theme-switch-knob {
+    transform: translateX(36px);
+    background: #fbbf24;
+  }
+  
+  .dark .theme-switch-knob svg {
+    color: #1e293b;
+  }
+  
+  /* Iconos dentro del switch */
+  .switch-icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    pointer-events: none;
+  }
+  
+  .switch-icons span {
+    font-size: 14px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Cursor animado para el texto dinámico */
+  #typed::after {
+    content: "|";
+    animation: blink 0.8s infinite;
+    margin-left: 2px;
+    font-weight: 300;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  
+  /* Transiciones suaves para todos los elementos */
+  * {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Mejora de texto en modo oscuro */
+  .dark .text-gray-400 {
+    color: #9ca3af;
+  }
+  
+  .dark .ring-white\/10 {
+    ring-color: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Animación de brillo para el texto */
+  @keyframes softGlow {
+    0%, 100% { text-shadow: 0 0 5px rgba(249, 115, 22, 0.3); }
+    50% { text-shadow: 0 0 15px rgba(249, 115, 22, 0.6); }
+  }
+  
+  #typed {
+    animation: softGlow 2s ease-in-out infinite;
+  }
+
+  /* Ajustes responsivos para el switch en móvil */
+  @media (max-width: 768px) {
+    .theme-switch {
+      width: 56px;
+      height: 28px;
+    }
+    .theme-switch-knob {
+      width: 22px;
+      height: 22px;
+      top: 3px;
+      left: 3px;
+    }
+    .theme-switch-knob svg {
+      width: 14px;
+      height: 14px;
+    }
+    .dark .theme-switch-knob {
+      transform: translateX(28px);
+    }
+    .switch-icons span {
+      font-size: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .theme-switch {
+      width: 48px;
+      height: 24px;
+    }
+    .theme-switch-knob {
+      width: 18px;
+      height: 18px;
+      top: 3px;
+      left: 3px;
+    }
+    .theme-switch-knob svg {
+      width: 12px;
+      height: 12px;
+    }
+    .dark .theme-switch-knob {
+      transform: translateX(24px);
+    }
+    .switch-icons span {
+      font-size: 8px;
+    }
+  }
+</style>
+</head>
+<body class="bg-with-image">
+  
+<div>
+  <header class="absolute inset-x-0 top-0 z-50">
+    <nav aria-label="Global" class="flex items-center justify-between p-4 sm:p-6 lg:px-8">
+      <div class="flex lg:flex-1">
+        <a href="#" class="-m-1.5 p-1.5">
+          <span class="sr-only">Antabamba</span>
+          <img src="img/fondos.png" alt="Mi Logo" class="h-10 sm:h-12 w-auto">
+        </a>
+      </div>
+      <div class="flex lg:hidden">
+        <button type="button" command="show-modal" commandfor="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-200">
+          <span class="sr-only">Abrir main menu</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+      <div class="hidden lg:flex lg:gap-x-8 xl:gap-x-12">
+        <a href="index.html" class="text-sm/6 font-semibold text-white hover:text-indigo-300 transition-all duration-300">Inicio</a>
+        <a href="estudiantes4.html" class="text-sm/6 font-semibold text-white hover:text-indigo-300 transition-all duration-300">Docentes</a>
+        <a href="estudiantes.html" class="text-sm/6 font-semibold text-white hover:text-indigo-300 transition-all duration-300">Estudiantes</a>
+        <a href="admin3.html" class="text-sm/6 font-semibold text-white hover:text-indigo-300 transition-all duration-300">Administrativos</a>
+      </div>
+      
+
+
+
+<div class="flex items-center gap-3">
+  <!-- Theme Switch visible en todos -->
+  <div id="theme-switch" class="theme-switch">
+    <div class="switch-icons">
+      <span>☀️</span>
+      <span>🌙</span>
+    </div>
+    <div class="theme-switch-knob" id="theme-knob">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Login solo desktop -->
+  <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+    <a href="http://localhost:8080/login.php" class="text-sm/6 font-semibold text-white hover:text-indigo-300 transition-all duration-300">
+      Log in →
+    </a>
+  </div>
+</div>
+
+
+
+
+    </nav>
+    <el-dialog>
+      <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
+        <div tabindex="0" class="fixed inset-0 focus:outline-none">
+          <el-dialog-panel class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
+            <div class="flex items-center justify-between">
+              <a href="#" class="-m-1.5 p-1.5">
+                <span class="sr-only">Mi colegio-Your Company</span>
+                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="" class="h-8 w-auto" />
+              </a>
+              <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-200">
+                <span class="sr-only">Cerrar Close menu</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+                  <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              
+
+              
+            </div>
+            <div class="mt-6 flow-root">
+              <div class="-my-6 divide-y divide-white/10">
+                <div class="space-y-2 py-6">
+                  <a href="index.html" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Inicio</a>
+                  <a href="estudiantes4.html" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Docente</a>
+                  <a href="estudiantes.html" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Estudiante</a>
+                  <a href="admin3.html" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Actividades</a>
+                </div>
+                <div class="py-6">
+                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5">Log in</a>
+                </div>
+              </div>
+            </div>
+          </el-dialog-panel>
+        </div>
+      </dialog>
+
+    </el-dialog>
+  </header>
+
+  <div class="relative isolate px-6 pt-14 lg:px-8">
+    <div aria-hidden="true" class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+      <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75"></div>
+    </div>
+    
+    <!-- HERO SECTION CON TEXTO DINÁMICO Y FOTO -->
+    <div class="mx-auto max-w-5xl py-16 sm:py-20 lg:py-28 xl:py-32">
+      
+      <!-- Grid de dos columnas: texto y foto -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+        
+        <!-- COLUMNA DE TEXTO -->
+        <div class="text-center lg:text-left">
+          <div class="hidden sm:mb-6 sm:flex sm:justify-center lg:justify-start">
+            <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-300 ring-1 ring-white/20 hover:ring-white/30 transition-all duration-300">
+              ✨ Bienvenidos al futuro educativo ✨
+            </div>
+          </div>
+          
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white drop-shadow-lg">
+            Hola, soy <br>
+            <span class="text-indigo-300">Sanny Garin</span>
+          </h1>
+          
+          <p class="mt-4 sm:mt-6 text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-white">
+            Me gusta <span id="typed" class="font-bold text-orange-400"></span>
+          </p>
+          
+          <p class="mt-4 sm:mt-6 text-gray-200 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0">
+            Apasionada por la ingeniería de datos y las soluciones analíticas escalables. 
+            Transformando información en decisiones estratégicas.
+          </p>
+          
+          <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+            <a href="#" class="rounded-full bg-indigo-600 px-5 sm:px-6 py-2.5 sm:py-3 text-white font-semibold shadow-lg hover:bg-indigo-500 transition-all duration-300 hover:scale-105 text-center text-sm sm:text-base">
+              Conoce más ↓
+            </a>
+            <a href="#" class="rounded-full border border-white/30 px-5 sm:px-6 py-2.5 sm:py-3 text-white hover:bg-white/10 transition-all duration-300 hover:scale-105 text-center text-sm sm:text-base">
+              Mis proyectos
+            </a>
+          </div>
+        </div>
+        
+        <!-- COLUMNA DE FOTO -->
+        <div class="flex justify-center lg:justify-end">
+          <div class="relative">
+            <!-- Efecto de glow detrás de la foto -->
+            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 blur-2xl scale-110 animate-pulse opacity-60"></div>
+            <!-- Foto circular -->
+            <img src="img/cayosss.jpg" 
+                 alt="Sanny Garin" 
+                 class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-full object-cover border-4 border-white/40 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white/60">
+            <!-- Pequeño badge decorativo -->
+            <div class="absolute -bottom-2 -right-2 bg-indigo-600 rounded-full p-1.5 sm:p-2 shadow-lg">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- Texto del colegio debajo -->
+      <div class="text-center mt-12 sm:mt-16">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-white drop-shadow-lg">
+          Colegio José Sepulveda-Cañete
+        </h2>
+        <p class="mt-2 sm:mt-4 text-base sm:text-lg text-gray-200">Antabamba - Apurímac</p>
+        <div class="mt-6 sm:mt-8 flex items-center justify-center gap-x-4 sm:gap-x-6">
+          <a href="#" class="rounded-md bg-indigo-500 px-4 sm:px-5 py-2 text-sm font-semibold text-white shadow-md hover:bg-indigo-400 transition-all duration-300 hover:scale-105">Entrar</a>
+          <a href="#" class="text-sm/6 font-semibold text-white hover:text-indigo-300 transition-all duration-300">Leer más <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div aria-hidden="true" class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+      <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const switches = [
+  document.getElementById("theme-switch"),
+  document.getElementById("theme-switch-mobile")
+];
+
+const html = document.documentElement;
+
+function applyTheme(isDark) {
+  if (isDark) {
+    html.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    html.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  }
+}
+
+const savedTheme = localStorage.getItem("theme");
+const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+applyTheme(savedTheme === "dark" || (!savedTheme && systemDark));
+
+switches.forEach(sw => {
+  if (sw) {
+    sw.addEventListener("click", () => {
+      const isDark = html.classList.contains("dark");
+      applyTheme(!isDark);
+    });
+  }
+});
+</script>
+
+
+
+
+</body>
+</html>

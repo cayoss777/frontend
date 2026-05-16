@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es" class="transition duration-500">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Claudio Huancahuire | Data Warehouse</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<style>
+  .bg-with-image {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(99, 102, 241, 0.55) 0%,
+        rgba(99, 102, 241, 0.35) 40%,
+        rgba(255, 255, 255, 0.15) 100%
+      ),
+      url("docentes/img/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark .bg-with-image {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.92) 0%,
+        rgba(30, 41, 59, 0.85) 50%,
+        rgba(0, 0, 0, 0.75) 100%
+      ),
+      url("docentes/img/fondo.jpg");
+  }
+
+  /* Animaciones existentes */
+  @keyframes glowMove {
+    0%, 100% {
+      transform: translateX(0px) scale(1);
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
+      background-position: 0% 50%;
+    }
+    50% {
+      transform: translateX(8px) scale(1.05);
+      filter: drop-shadow(0 0 18px rgba(255,255,255,0.8));
+      background-position: 100% 50%;
+    }
+  }
+
+  .animated-text {
+    display: inline-block;
+    background-size: 200% auto;
+    animation: glowMove 3s ease-in-out infinite;
+    font-weight: 700;
+  }
+
+  /* Cursor animado para el texto dinámico */
+  #typed::after {
+    content: "|";
+    color: #f97316;
+    animation: blink 0.8s infinite;
+    margin-left: 2px;
+    font-weight: 300;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* Animación de entrada para el menú móvil */
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .mobile-menu-open {
+    animation: slideInRight 0.3s ease-out forwards;
+  }
+
+  /* Overlay para el fondo cuando el menú está abierto */
+  .menu-overlay {
+    transition: opacity 0.3s ease;
+  }
+
+  /* ========== SWITCH MEJORADO ========== */
+  .theme-switch {
+    position: relative;
+    width: 72px;
+    height: 36px;
+    border-radius: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.2);
+  }
+  
+  .theme-switch:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  
+  .theme-switch-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  
+  .theme-switch-knob svg {
+    width: 18px;
+    height: 18px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Modo oscuro */
+  .dark .theme-switch {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.1);
+  }
+  
+  .dark .theme-switch-knob {
+    transform: translateX(36px);
+    background: #fbbf24;
+  }
+  
+  .dark .theme-switch-knob svg {
+    color: #1e293b;
+  }
+  
+  /* Iconos dentro del switch */
+  .switch-icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    pointer-events: none;
+  }
+  
+  .switch-icons span {
+    font-size: 14px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Mejora del header para mejor integración */
+  header {
+    transition: background 0.4s ease;
+  }
+  
+  .dark header {
+    background: rgba(0, 0, 0, 0.4);
+  }
+</style>
+
+</head>
+<body class="bg-with-image min-h-screen">
+
+  <!-- NAVBAR CON MENÚ RESPONSIVE COMPLETO -->
+  <header class="fixed inset-x-0 top-0 z-50 bg-black/20 backdrop-blur-sm transition-all duration-500">
+    <nav class="flex items-center justify-between p-4 lg:px-12">
+      
+      <!-- Logo -->
+      <img src="img/fondos.png" alt="Logo" class="h-10 sm:h-12 transition-all duration-300 hover:scale-105">
+
+      <!-- Menú Desktop -->
+      <div class="hidden md:flex gap-6 lg:gap-10">
+        <a href="index.html" class="text-white font-semibold hover:text-indigo-300 transition-all duration-300 hover:translate-y-[-2px]">Inicio</a>
+        <a href="do.html" class="text-white font-semibold hover:text-indigo-300 transition-all duration-300 hover:translate-y-[-2px]">Docentes</a>
+        <a href="es.html" class="text-white font-semibold hover:text-indigo-300 transition-all duration-300 hover:translate-y-[-2px]">Estudiantes</a>
+        <a href="ad.html" class="text-white font-semibold hover:text-indigo-300 transition-all duration-300 hover:translate-y-[-2px]">Administrativos</a>
+      </div>
+
+      <!-- Botones derecha (Theme Switch + Login + Menú Hamburguesa) -->
+      <div class="flex items-center gap-3 sm:gap-4">
+        
+        <!-- Theme Switch Mejorado -->
+        <div id="theme-switch" class="theme-switch">
+          <div class="switch-icons">
+            <span style="font-size: 14px;">☀️</span>
+            <span style="font-size: 14px;">🌙</span>
+          </div>
+          <div class="theme-switch-knob" id="theme-knob">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Login Desktop -->
+        <a href="#" class="hidden lg:block text-white font-semibold hover:text-indigo-300 transition-all duration-300 hover:translate-x-1">
+          Login →
+        </a>
+
+        <!-- Botón Menú Hamburguesa (solo en móvil/tablet) -->
+        <button id="menuToggleBtn" class="md:hidden text-white focus:outline-none p-2 rounded-lg hover:bg-white/10 transition-all duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menú Móvil (Off-canvas) -->
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-300 md:hidden"></div>
+    <div id="mobileMenu" class="fixed top-0 right-0 h-full w-64 sm:w-80 bg-gradient-to-b from-indigo-900 to-purple-900 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-out md:hidden">
+      <div class="flex justify-end p-4">
+        <button id="closeMenuBtn" class="text-white p-2 hover:bg-white/10 rounded-full transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="flex flex-col items-start gap-6 px-6 py-4">
+        <a href="index.html" class="text-white text-lg font-semibold hover:text-indigo-300 transition-all duration-300 w-full border-b border-white/20 pb-2">Inicio</a>
+        <a href="do.html" class="text-white text-lg font-semibold hover:text-indigo-300 transition-all duration-300 w-full border-b border-white/20 pb-2">Docentes</a>
+        <a href="es.html" class="text-white text-lg font-semibold hover:text-indigo-300 transition-all duration-300 w-full border-b border-white/20 pb-2">Estudiantes</a>
+        <a href="ad.html" class="text-white text-lg font-semibold hover:text-indigo-300 transition-all duration-300 w-full border-b border-white/20 pb-2">Administrativos</a>
+        <a href="#" class="text-white text-lg font-semibold hover:text-indigo-300 transition-all duration-300 w-full pt-2">Login →</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO CON TEXTO ANIMADO -->
+  <section class="min-h-screen flex items-center px-6 sm:px-8 lg:px-20 pt-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center w-full">
+
+      <!-- TEXTO -->
+      <div>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight text-center lg:text-left">
+          Hola,<br>
+          soy <span class="text-indigo-200">Isaias</span>
+          <span class="text-orange-400">Huancahuire Bravo.</span>
+        </h1>
+        <p class="mt-6 text-xl sm:text-2xl md:text-3xl font-semibold text-white text-center lg:text-left">
+          Me gusta <span id="typed" class="font-bold text-orange-400"></span>
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a href="#"
+            class="rounded-full bg-indigo-600 px-6 py-3 text-white font-semibold shadow-lg hover:bg-indigo-500 transition-all duration-300 hover:scale-105 text-center">
+            Acerca de mí ↓
+          </a>
+          <a href="#"
+            class="rounded-full border border-white/30 px-6 py-3 text-white hover:bg-white/10 transition-all duration-300 hover:scale-105 text-center">
+            Proyectos
+          </a>
+        </div>
+      </div>
+
+      <!-- FOTO -->
+      <div class="flex justify-center lg:justify-end">
+        <div class="relative">
+          <div class="absolute inset-0 rounded-full bg-white/20 blur-2xl scale-110 animate-pulse"></div>
+          <img src="img/cayosss.jpg"
+            alt="Claudio"
+            class="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full object-cover border-8 border-white/30 shadow-2xl mx-auto transition-all duration-500 hover:scale-105">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    // ==================== THEME TOGGLE MEJORADO ====================
+    const themeSwitch = document.getElementById("theme-switch");
+    const html = document.documentElement;
+    const themeKnob = document.getElementById("theme-knob");
+    
+    // Función para actualizar el ícono dentro del knob según el tema
+    function updateKnobIcon(isDark) {
+      if (themeKnob) {
+        if (isDark) {
+          themeKnob.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+            </svg>
+          `;
+        } else {
+          themeKnob.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          `;
+        }
+      }
+    }
+    
+    // Verificar preferencia guardada o del sistema
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+      html.classList.add('dark');
+      updateKnobIcon(true);
+    } else {
+      html.classList.remove('dark');
+      updateKnobIcon(false);
+    }
+    
+    // Evento de clic en el switch mejorado
+    if (themeSwitch) {
+      themeSwitch.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isDark = html.classList.contains("dark");
+        
+        if (isDark) {
+          html.classList.remove("dark");
+          localStorage.setItem('theme', 'light');
+          updateKnobIcon(false);
+          // Animación adicional: pequeño efecto de brillo
+          themeSwitch.style.transform = 'scale(0.98)';
+          setTimeout(() => {
+            if (themeSwitch) themeSwitch.style.transform = '';
+          }, 200);
+        } else {
+          html.classList.add("dark");
+          localStorage.setItem('theme', 'dark');
+          updateKnobIcon(true);
+          themeSwitch.style.transform = 'scale(0.98)';
+          setTimeout(() => {
+            if (themeSwitch) themeSwitch.style.transform = '';
+          }, 200);
+        }
+      });
+    }
+    
+    // Efecto hover adicional
+    if (themeSwitch) {
+      themeSwitch.addEventListener('mouseenter', () => {
+        themeSwitch.style.transform = 'scale(1.02)';
+      });
+      themeSwitch.addEventListener('mouseleave', () => {
+        themeSwitch.style.transform = '';
+      });
+    }
+
+    // ==================== MENÚ RESPONSIVE (HAMBURGUESA) ====================
+    const menuToggleBtn = document.getElementById("menuToggleBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const overlay = document.getElementById("mobileMenuOverlay");
+
+    function openMenu() {
+      mobileMenu.classList.remove("translate-x-full");
+      mobileMenu.classList.add("translate-x-0");
+      overlay.classList.remove("opacity-0", "invisible");
+      overlay.classList.add("opacity-100", "visible");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+      mobileMenu.classList.remove("translate-x-0");
+      mobileMenu.classList.add("translate-x-full");
+      overlay.classList.remove("opacity-100", "visible");
+      overlay.classList.add("opacity-0", "invisible");
+      document.body.style.overflow = "";
+    }
+
+    if (menuToggleBtn) {
+      menuToggleBtn.addEventListener("click", openMenu);
+    }
+    if (closeMenuBtn) {
+      closeMenuBtn.addEventListener("click", closeMenu);
+    }
+    if (overlay) {
+      overlay.addEventListener("click", closeMenu);
+    }
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 768) {
+        closeMenu();
+      }
+    });
+
+    // ==================== TEXTO DINÁMICO CON MÁQUINA DE ESCRIBIR ====================
+    const roles = [
+      "Data Warehouse",
+      "Big Data",
+      "Visualizar con Power BI",
+      "Machine Learning",
+      "PHP",
+      "Java",
+      "NodeJS"
+    ];
+
+    let roleIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    const typed = document.getElementById("typed");
+
+    typed.classList.add("text-orange-400");
+
+    function typeEffect() {
+      const currentText = roles[roleIndex];
+
+      if (!deleting) {
+        typed.textContent = currentText.substring(0, charIndex++);
+      } else {
+        typed.textContent = currentText.substring(0, charIndex--);
+      }
+
+      let speed = deleting ? 60 : 120;
+
+      if (!deleting && charIndex > currentText.length) {
+        deleting = true;
+        speed = 1200;
+      }
+
+      if (deleting && charIndex < 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        speed = 400;
+      }
+
+      setTimeout(typeEffect, speed);
+    }
+
+    setTimeout(typeEffect, 500);
+
+    // ==================== ANIMACIONES DE ENTRADA ====================
+    const textContainer = document.querySelector('p.mt-6');
+    if (textContainer) {
+      textContainer.style.opacity = '0';
+      textContainer.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        textContainer.style.transition = 'all 0.6s ease-out';
+        textContainer.style.opacity = '1';
+        textContainer.style.transform = 'translateY(0)';
+      }, 300);
+    }
+
+    const title = document.querySelector('h1');
+    if (title) {
+      title.style.opacity = '0';
+      title.style.transform = 'translateY(30px)';
+      setTimeout(() => {
+        title.style.transition = 'all 0.7s ease-out';
+        title.style.opacity = '1';
+        title.style.transform = 'translateY(0)';
+      }, 100);
+    }
+
+    const buttons = document.querySelector('.mt-8');
+    if (buttons) {
+      buttons.style.opacity = '0';
+      setTimeout(() => {
+        buttons.style.transition = 'all 0.5s ease-out 0.2s';
+        buttons.style.opacity = '1';
+      }, 400);
+    }
+
+    const photo = document.querySelector('.relative img');
+    if (photo) {
+      photo.style.opacity = '0';
+      photo.style.transform = 'scale(0.9)';
+      setTimeout(() => {
+        photo.style.transition = 'all 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1)';
+        photo.style.opacity = '1';
+        photo.style.transform = 'scale(1)';
+      }, 200);
+    }
+  </script>
+
+  <!-- Estilos adicionales -->
+  <style>
+    /* Ajustes para el menú móvil */
+    #mobileMenu {
+      background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);
+      backdrop-filter: blur(10px);
+      box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    #mobileMenu a {
+      transition: all 0.2s ease;
+    }
+    
+    #mobileMenu a:hover {
+      padding-left: 8px;
+      color: #a5b4fc;
+    }
+    
+    body.menu-open {
+      overflow: hidden;
+    }
+    
+    #typed {
+      min-width: 180px;
+      display: inline-block;
+      text-align: left;
+    }
+    
+    @media (max-width: 640px) {
+      #typed {
+        min-width: 160px;
+      }
+      .text-4xl {
+        font-size: 2rem;
+      }
+    }
+    
+    @keyframes softGlow {
+      0%, 100% {
+        text-shadow: 0 0 5px rgba(249, 115, 22, 0.3);
+      }
+      50% {
+        text-shadow: 0 0 15px rgba(249, 115, 22, 0.6);
+      }
+    }
+    
+    #typed {
+      animation: softGlow 2s ease-in-out infinite;
+    }
+    
+    /* Transición suave para todos los elementos al cambiar tema */
+    * {
+      transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+      transition-duration: 200ms;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Mejora del contraste en modo oscuro */
+    .dark .bg-white\/30 {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Efecto de brillo en el switch al hacer clic */
+    .theme-switch:active {
+      transform: scale(0.96) !important;
+    }
+  </style>
+
+  <script>
+    // Cierre del menú con Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('mobileMenuOverlay');
+        if (mobileMenu && !mobileMenu.classList.contains('translate-x-full')) {
+          closeMenu();
+        }
+      }
+    });
+    
+    window.closeMenu = function() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const overlay = document.getElementById('mobileMenuOverlay');
+      if (mobileMenu) {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+      }
+      if (overlay) {
+        overlay.classList.remove('opacity-100', 'visible');
+        overlay.classList.add('opacity-0', 'invisible');
+      }
+      document.body.style.overflow = "";
+    };
+  </script>
+
+</body>
+</html>

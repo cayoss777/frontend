@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es" class="transition duration-500">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colegio José Sepulveda-Cañete | Claudio Huancahuire</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+    .bg-with-image {
+      background-image: linear-gradient(180deg, rgba(99, 102, 241, 0.6) 0%, rgba(255, 255, 255, 0.1) 100%),
+        url("docentes/img/fondo.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .dark .bg-with-image {
+      background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(0, 0, 0, 0.8) 100%),
+        url("docentes/img/fondo.jpg");
+    }
+
+    .theme-switch {
+      position: relative;
+      width: 64px;
+      height: 32px;
+      border-radius: 50px;
+      background: #334155;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6px;
+      transition: all 0.4s;
+    }
+
+    .dark .theme-switch {
+      background: #fbbf24;
+    }
+
+    .theme-switch-knob {
+      position: absolute;
+      left: 4px;
+      width: 24px;
+      height: 24px;
+      background: white;
+      border-radius: 50%;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      z-index: 2;
+    }
+
+    .dark .theme-switch-knob {
+      transform: translateX(32px);
+      background: #1e293b;
+    }
+
+    #typed::after {
+      content: "|";
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #fbbf24, #f97316, #ef4444);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      background-size: 200% 200%;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .glow-text {
+      transition: text-shadow 0.3s ease;
+    }
+
+    .glow-text:hover {
+      text-shadow: 0 0 20px rgba(251, 191, 36, 0.6), 0 0 40px rgba(251, 191, 36, 0.3);
+    }
+
+    .float-text {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .btn-interactive {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .btn-interactive::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateX(-100%) skewX(-15deg);
+      transition: transform 0.5s ease;
+    }
+
+    .btn-interactive:hover::after {
+      transform: translateX(100%) skewX(-15deg);
+    }
+
+    .btn-interactive:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+    }
+
+    .reveal-text {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: revealUp 0.8s ease forwards;
+    }
+
+    .reveal-text:nth-child(1) { animation-delay: 0.2s; }
+    .reveal-text:nth-child(2) { animation-delay: 0.4s; }
+
+    @keyframes revealUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .letter-spin {
+      display: inline-block;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .letter-spin:hover {
+      transform: rotate(10deg) scale(1.1);
+      color: #fbbf24;
+    }
+
+    .pulse-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #60a5fa;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.5; }
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1.2em;
+      background: #fbbf24;
+      margin-left: 2px;
+      animation: cursorBlink 0.7s infinite;
+      vertical-align: text-bottom;
+    }
+
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .visit-counter {
+      font-variant-numeric: tabular-nums;
+    }
+
+    @media (max-width: 480px) {
+      .fixed.bottom-6.left-6 {
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: max-content;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-with-image min-h-screen text-white">
+
+  <header class="fixed inset-x-0 top-0 z-50 bg-black/10 backdrop-blur-md">
+    <nav class="flex items-center justify-between p-4 lg:px-8 max-w-7xl mx-auto">
+
+      <div class="flex lg:flex-1">
+        <a href="#" class="-m-1.5 p-1.5 hover:scale-105 transition">
+          <img src="img/fondos.png" alt="Logo" class="h-10 w-auto drop-shadow-md">
+        </a>
+      </div>
+
+      <div class="flex lg:hidden items-center">
+        <button type="button" onclick="document.getElementById('mobile-menu').showModal()"
+          class="inline-flex items-center justify-center p-2 text-white hover:bg-white/10 rounded-lg">
+          <svg class="size-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="hidden lg:flex lg:gap-x-10">
+        <a href="index.html" class="text-sm font-bold hover:text-indigo-300 transition relative group">
+          Inicio
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="doc.html" class="text-sm font-bold hover:text-indigo-300 transition relative group">
+          Docentes
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="est.html" class="text-sm font-bold hover:text-indigo-300 transition relative group">
+          Estudiantes
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="adm.html" class="text-sm font-bold hover:text-indigo-300 transition relative group">
+          Administrativos
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="/index.html" class="text-sm font-bold hover:text-indigo-300 transition relative group">
+          Maqueta
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </div>
+
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-6">
+        <div id="theme-switch" class="theme-switch" title="Cambiar tema">
+          <span class="text-xs">🌙</span>
+          <span class="text-xs">☀️</span>
+          <div class="theme-switch-knob"></div>
+        </div>
+        <a href="login.php"
+          class="text-sm font-bold border border-white/30 px-4 py-2 rounded-full hover:bg-white/10 hover:scale-105 transition-all duration-300">
+          Log in →
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <dialog id="mobile-menu" class="w-full h-full">
+    <div class="fixed inset-0 bg-gray-900/95 flex flex-col p-6 h-full">
+      <div class="flex items-center justify-between mb-10">
+        <img src="img/fondos.png" alt="Logo" class="h-8">
+        <button onclick="document.getElementById('mobile-menu').close()" class="p-2 text-white hover:rotate-90 transition-transform duration-300">
+          <svg class="size-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex flex-col items-center gap-8 mt-10">
+        <a href="index.html" class="text-2xl font-bold hover:text-indigo-400 hover:scale-110 transition-all duration-300">Inicio</a>
+        <a href="doc.html" class="text-2xl font-bold hover:text-indigo-400 hover:scale-110 transition-all duration-300">Docentes</a>
+        <a href="est.html" class="text-2xl font-bold hover:text-indigo-400 hover:scale-110 transition-all duration-300">Estudiantes</a>
+        <a href="adm.html" class="text-2xl font-bold hover:text-indigo-400 hover:scale-110 transition-all duration-300">Administrativos</a>
+        <a href="/index.html" class="text-2xl font-bold hover:text-indigo-400 hover:scale-110 transition-all duration-300">Maqueta</a>
+
+        <hr class="w-full border-white/10">
+
+        <div class="flex flex-col items-center gap-4">
+          <span class="text-sm text-gray-400">Cambiar Apariencia</span>
+          <div id="theme-switch-mobile" class="theme-switch scale-125">
+            <span class="text-xs">🌙</span>
+            <span class="text-xs">☀️</span>
+            <div class="theme-switch-knob"></div>
+          </div>
+        </div>
+
+        <a href="#" class="mt-4 w-full text-center bg-indigo-600 py-4 rounded-xl font-bold hover:bg-indigo-500 hover:scale-105 transition-all duration-300">Log in</a>
+      </div>
+    </div>
+  </dialog>
+
+  <main class="relative isolate px-6 pt-24 lg:px-8 flex flex-col items-center">
+    <div class="mx-auto max-w-5xl py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+        <div class="text-center lg:text-left order-2 lg:order-1">
+          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight drop-shadow-xl reveal-text">
+            Hola, soy <br>
+            <span class="text-gradient glow-text float-text inline-block">Claudio Huancahuire Bravo</span>
+          </h1>
+          <p class="mt-6 text-xl sm:text-2xl font-medium reveal-text">
+            Me gusta 
+            <span id="typed" class="text-orange-400 font-bold"></span>
+            <span class="typing-cursor"></span>
+          </p>
+          <div class="mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
+            <a href="#"
+              class="btn-interactive rounded-full border bg-sky-500 px-8 py-4 font-bold shadow-lg hover:bg-transparent hover:scale-105 transition">Conoce
+              más</a>
+            <a href="#"
+              class="btn-interactive rounded-full border bg-sky-500 px-8 py-4 font-bold hover:bg-transparent hover:scale-105 transition">Proyectos</a>
+          </div>
+        </div>
+
+        <div class="flex justify-center order-1 lg:order-2">
+          <div class="relative group">
+            <div
+              class="absolute inset-0 rounded-full bg-indigo-500 blur-3xl opacity-40 group-hover:opacity-60 transition">
+            </div>
+            <img src="img/cayosss.jpg" alt="Foto"
+              class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full object-cover border-8 border-white/10 shadow-2xl group-hover:border-white/30 group-hover:scale-105 transition-all duration-500">
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-20 space-y-4">
+        <h2 class="text-3xl font-bold opacity-90 hover:opacity-100 transition-opacity duration-300 cursor-default">
+          I.E José Sepulveda--Cañete
+        </h2>
+        <p class="text-gray-300 flex items-center justify-center gap-2">
+          <span class="pulse-dot"></span>
+          Cañete - Lima - Perú
+          <span class="pulse-dot"></span>
+        </p>
+        <div class="mt-4 inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm rounded-full px-5 py-2 text-sm text-gray-300 hover:bg-white/10 transition-all duration-300 cursor-default">
+          <span>👥</span>
+          <span>Visitas: <strong id="visitCount" class="text-indigo-400 visit-counter">0</strong></span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const html = document.documentElement;
+    const switches = [document.getElementById("theme-switch"), document.getElementById("theme-switch-mobile")];
+
+    function applyTheme(isDark) {
+      if (isDark) { html.classList.add("dark"); localStorage.setItem("theme", "dark"); }
+      else { html.classList.remove("dark"); localStorage.setItem("theme", "light"); }
+    }
+
+    const savedTheme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    applyTheme(savedTheme === "dark");
+
+    switches.forEach(sw => {
+      sw?.addEventListener("click", () => applyTheme(!html.classList.contains("dark")));
+    });
+
+    const words = ["Programar", "Big Data", "Ingeniería de datos", "Java", "Tailwind CSS", "Desarrollar webs"];
+    let i = 0, j = 0, isDeleting = false;
+    const target = document.getElementById("typed");
+
+    function type() {
+      const currentWord = words[i];
+      target.textContent = isDeleting ? currentWord.substring(0, j--) : currentWord.substring(0, j++);
+
+      if (!isDeleting && j >= currentWord.length) { isDeleting = true; setTimeout(type, 1800); }
+      else if (isDeleting && j === 0) { isDeleting = false; i = (i + 1) % words.length; setTimeout(type, 500); }
+      else { setTimeout(type, isDeleting ? 40 : 90); }
+    }
+    type();
+
+    document.querySelectorAll('.btn-interactive').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        btn.style.setProperty('--x', x + 'px');
+        btn.style.setProperty('--y', y + 'px');
+      });
+    });
+
+    function animateValue(obj, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
+        if (progress < 1) window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    function contadorVisitas() {
+      const nombreUnico = "colegio-jose-sepulveda-2026";
+      fetch(`https://api.countapi.xyz/hit/${nombreUnico}/visitas`)
+        .then(res => res.json())
+        .then(res => {
+          const elemento = document.getElementById('visitCount');
+          animateValue(elemento, 0, res.value, 1200);
+        })
+        .catch(err => {
+          console.error("No se pudo cargar el contador", err);
+          document.getElementById('visitCount').innerHTML = "1,050";
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', contadorVisitas);
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === "#") return;
+        e.preventDefault();
+        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
+</body>
+
+</html>
