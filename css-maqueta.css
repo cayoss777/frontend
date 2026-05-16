@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+body{
+    background: rgb(233, 77, 5); /* Define el color de fondo (naranja) */
+    color: #070707;              /* Color del texto (casi negro) */
+    padding: 30px;               /* Espacio interno alrededor del contenido */
+}
+
+
+/* HEADER falta */
+header{
+    background: #222;       /* Fondo oscuro */
+    padding: 15px;          /* Espacio interno */
+    border-radius: 20px;    /* Bordes redondeados */
+}
+
+nav ul{
+    list-style: none;   /* Quita viñetas de la lista */
+    display: flex;      /* Coloca los elementos en fila */
+    gap: 15px;          /* Espacio entre elementos */
+    margin-top: 10px;   /* Separación superior */
+}
+
+
+nav a{
+    color: white;             /* Texto en color blanco */
+    text-decoration: none;    /* Quita el subrayado del enlace */
+}
+
+nav a:hover{
+    color: rgb(233, 77, 5); /* Cambia el color al pasar el cursor */
+}
+
+
+/* SECCIONES */
+
+section{
+    background: white;   /* Fondo blanco */
+    margin-top: 20px;    /* Espacio arriba */
+    padding: 15px;       /* Espacio interno */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+
+
+article{
+    margin-top: 10px;             /* Espacio superior */
+    padding: 10px;                /* Espacio interno */
+    background: rgb(233, 77, 5);  /* Fondo naranja */
+    border-radius: 5px;           /* Bordes redondeados */
+}
+
+
+
+/* FOOTER */
+
+footer{
+    margin: 20px;         /* Espacio exterior */
+    padding: 15px;        /* Espacio interno */
+    background: #222;     /* Fondo oscuro */
+    color: white;         /* Texto blanco */
+    border-radius: 10px;  /* Bordes redondeados */
+    text-align: center;   /* Centra el contenido */
+}
+
+
+
+footer a{
+    color: rgb(233, 77, 5); /* Color naranja para enlaces */
+    margin: 10px;           /* Espacio alrededor */
+    text-decoration: none;  /* Sin subrayado */
+}
+
+
+
+footer a:hover{
+    color: rgb(236, 231, 229); /* Cambia el color al pasar el cursor */
+}
+

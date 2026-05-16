@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Animaciones CSS</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    padding: 40px;
+}
+
+/* ===== CAJA ===== */
+.box {
+    width: 150px;
+    height: 150px;
+    background: coral;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 10px;
+
+    /* transition */
+    transition: all 0.4s ease;
+}
+
+/* ===== HOVER ===== */
+.box:hover {
+    transform: scale(1.2) rotate(10deg);
+    background: rgb(238, 42, 8);
+}
+
+/* ===== ANIMACIÓN AUTOMÁTICA ===== */
+.animate {
+    width: 150px;
+    height: 150px;
+    background: rgb(37, 5, 218);
+    margin-top: 40px;
+    border-radius: 50%;
+
+    animation: mover 3s infinite;
+}
+
+/* keyframes */
+@keyframes mover {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(100px); }
+    100% { transform: translateX(0); }
+}
+</style>
+
+</head>
+<body>
+
+<h2>Transition + Transform</h2>
+<div class="box">Hover</div>
+
+<h2>Keyframes</h2>
+<div class="animate"></div>
+
+</body>
+</html>

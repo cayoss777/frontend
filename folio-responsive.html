@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="folio-responsive.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="#" class="logo">Portafolio</a>
+            <button class="menu-toggle">☰</button>
+            <nav class="navbar">
+                <a href="index.html" class="active">Inico</a>
+                <a href="">About</a>
+                <a href="folio.html">Portafolio</a>
+                <a href="">Servicio</a>
+                <a href="index.html">Maquetación</a>
+                <a href="">Contacto</a>
+            </nav>
+        </header>
+
+        <section class="inicio">
+
+            <div class="download-social">
+
+                <div class="social-icons">
+                    <a href=""><i class="ri-facebook-fill"></i></a>
+                    <a href=""><i class="ri-youtube-line"></i></a>
+
+                    <a href=""><i class="ri-twitter-line"></i></a>
+
+                </div>
+
+
+            </div>
+            <div class="inicio-detalle">
+                <h1>Claudio Isaias Huancahuire</h1>
+                <h2>Sitio Web</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro quo tempore ea earum saepe dolore
+                    repudiandae corporis quidem consequuntur. Architecto?</p>
+                <a href="#" class="btn">Descargar CV</a>
+
+
+
+
+                <div class="inicio-img">
+
+                </div>
+
+            </div>
+
+            <div class="perfil">
+                <img src="cayos.jpeg" alt="Mi foto">
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.querySelector('.menu-toggle');
+            const navbar = document.querySelector('.navbar');
+            if (toggle && navbar) {
+                toggle.addEventListener('click', () => {
+                    navbar.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

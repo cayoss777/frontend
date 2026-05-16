@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio | Dev Trinity</title>
+    
+    <style>
+        :root {
+            --html-color: #E34F26;
+            --css-color: #1572B6;
+            --js-color: #F7DF1E;
+            --bg-dark: #1a1a1a;
+            --text-light: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            margin: 0;
+            background-color: #121212;
+            color: var(--text-light);
+            scroll-behavior: smooth;
+        }
+
+        /* Navegación */
+        nav {
+            background: rgba(0,0,0,0.8);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--js-color); }
+
+        /* Hero Section */
+        header {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e1e1e 0%, #333 100%);
+            text-align: center;
+            border-bottom: 4px solid var(--js-color);
+        }
+
+        /* Grid de Tecnologías (Tus apuntes graficados) */
+        .seccion { padding: 50px 20px; max-width: 1100px; margin: auto; }
+        
+        .grid-tech {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #252525;
+            padding: 25px;
+            border-radius: 15px;
+            transition: transform 0.3s;
+            border-bottom: 5px solid transparent;
+        }
+
+        .card:hover { transform: translateY(-10px); }
+        .html5 { border-color: var(--html-color); }
+        .css3 { border-color: var(--css-color); }
+        .js { border-color: var(--js-color); }
+
+        .card h3 { margin-top: 0; }
+        .card i { font-size: 2rem; display: block; margin-bottom: 10px; }
+
+        /* Botón Interactivo */
+        .btn-interact {
+            background: var(--js-color);
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#tecnologias">Stack</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <header id="inicio">
+        <h1>MI PORTAFOLIO</h1>
+        <p>Dominando la trinidad del desarrollo web</p>
+        <button class="btn-interact" onclick="saludar()">¡Haz clic aquí!</button>
+    </header>
+
+    <section id="tecnologias" class="seccion">
+        <h2 style="text-align: center;">Mi Stack Técnico</h2>
+        
+        <div class="grid-tech">
+            <article class="card html5">
+                <h3>🧡 HTML5</h3>
+                <ul>
+                    <li>Etiquetas semánticas</li>
+                    <li>Multimedia nativa</li>
+                    <li>Estructura base</li>
+                </ul>
+            </article>
+
+            <article class="card css3">
+                <h3>💙 CSS3</h3>
+                <ul>
+                    <li>Flexbox & Grid</li>
+                    <li>Animaciones</li>
+                    <li>Responsive Design</li>
+                </ul>
+            </article>
+
+            <article class="card js">
+                <h3>💛 JavaScript</h3>
+                <ul>
+                    <li>Manipulación DOM</li>
+                    <li>APIs & Servidor</li>
+                    <li>Interactividad</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <footer id="contacto" style="text-align: center; padding: 40px; background: #000;">
+        <p>¿Listo para trabajar juntos?</p>
+        <p>Email: mi@correo.com</p>
+    </footer>
+
+    <script>
+        function saludar() {
+            alert("¡Hola! Estás viendo la manipulación del DOM en acción. Este mensaje fue disparado por JavaScript.");
+            console.log("El usuario interactuó con el portafolio.");
+            
+            // Cambiar color del header dinámicamente
+            const header = document.querySelector('header');
+            header.style.background = "linear-gradient(135deg, #E34F26, #1572B6)";
+        }
+
+        // Ejemplo de lógica simple: Log de bienvenida
+        window.onload = () => {
+            console.log("Portafolio cargado con éxito.");
+        };
+    </script>
+</body>
+</html>

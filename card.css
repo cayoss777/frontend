@@ -1,0 +1,39 @@
+body{
+  background: #0f172a; /* color HEX */
+  font-family: Arial, sans-serif; /* tipografía */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* TARJETA */
+.card{
+  background: rgb(56, 189, 248); /* color RGB */
+  color: hsl(0, 0%, 10%); /* color HSL */
+  padding: 20px;
+  width: 250px;
+  border-radius: 15px; /* bordes redondeados */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* sombra */
+  text-align: center;
+}
+
+/* TEXTO */
+.card h2{
+  font-weight: bold; /* grosor de letra */
+}
+
+/* BOTÓN */
+button{
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #1e293b;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover{
+  background: #0f67e2;
+}

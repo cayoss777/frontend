@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<<<<<<< HEAD
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claudio Isaias Huancahuire Bravo | Portafolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+  <style>
+    /* Estilos generales */
+ 
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-ventana {
+      background: #1a1a1a;
+      border: 1px solid #444;
+      border-radius: 20px;
+      padding: 60px;          /* más espacio interno */
+      max-width: 720px;       /* ancho mayor */
+      width: 95%;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.active .modal-ventana {
+      transform: scale(1);
+    }
+    .modal-icon {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 72px;        /* iconos más grandes */
+      margin-bottom: 20px;
+    }
+    .modal-ventana h2 {
+      color: #fff;
+      font-size: 2rem;        /* título más grande */
+      margin-bottom: 12px;
+    }
+    .modal-ventana p {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      font-size: 1.1rem;      /* texto más grande */
+    }
+    .modal-ventana .btn {
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      background: #444;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Claudio Isaias Huancahuire Bravo</h1>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="">Sobre mi</a></li>
+        <li><a href="">Proyectos</a></li>
+        <li><a href="">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>Sobre Mi</h1>
+  <section id="sobremi">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+    <p>Architecto sapiente ut, amet, tempora distinctio porro...</p>
+  </section>
+
+  <h1>Proyectos</h1>
+  <section>
+    <article><p>Lorem1, ipsum dolor.</p><p>Minima, explicabo quod. PY1</p></article>
+    <article><p>Lorem1, ipsum dolor.</p><p>Nisi, id dignissimos! PY2</p></article>
+    <article><p>Lorem1, ipsum dolor.</p><p>Accusantium, consectetur? Sint.</p></article>
+  </section>
+
+  <h1>Contacto</h1>
+  <footer>
+    <nav><a href="index.html">Inicio</a><a href="css02.html">CSS-02</a><a href="css03.html">CSS-03</a></nav>
+  </footer>
+
+  <!-- Modal aumentado -->
+  <div id="miModal" class="modal-overlay active">
+    <div class="modal-ventana">
+      <div class="modal-icon">
+        <i class="ri-html5-fill" style="color:#e44d26"></i>
+        <i class="ri-css3-fill" style="color:#264de4"></i>
+        <i class="ri-javascript-fill" style="color:#f7df1e"></i>
+      </div>
+      <h2>Desarrollo FrontEnd</h2>
+      <p style="font-weight:500;color:#fff;">
+        HTML, CSS y JS como FrontEnd OK
+      </p>
+      <p>Tecnologías fundamentales para crear experiencias web modernas e interactivas.</p>
+      <button id="cerrarModal" class="btn" onclick="document.getElementById('miModal').classList.remove('active')">Cerrar</button>
+    </div>
+  </div>
+</body>
+</html>
+=======
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Claudio Isaias</title>
+
+    <!-- ENLACE AL CSS -->
+    
+</head>
+<body>
+    <h1>Claudio Isaias Huancahuire Bravo</h1>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="">Sobre mi</a></li>
+                <li><a href="">Proyectos</a></li>
+                <li><a href="">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Sobre Mi</h1>
+    <section id="sobremi">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. In voluptatibus aspernatur itaque qui soluta id dignissimos nesciunt ab!</p>
+        <p>Architecto sapiente ut, amet, tempora distinctio porro, deserunt suscipit est doloribus nobis nemo cumque repellendus odit facere unde.</p>
+    </section>
+
+    <h1>Proyectos</h1>
+    <section>
+        <article>
+            <P>Lorem, ipsum dolor.</P>
+            <P>Minima, explicabo quod. PY1</P>
+        </article>
+        <article>
+            <P>Lorem, ipsum dolor.</P>
+            <P>Nisi, id dignissimos! PY2</P>
+        </article>
+        <article>
+            <P>Lorem, ipsum dolor.</P>
+            <P>Accusantium, consectetur? Sint.</P>
+        </article>
+    </section>
+    <section>
+        <article>
+            <P>Lorem, ipsum dolor.</P>
+            <P>Magni, officia aspernatur!</P>
+        </article>
+        <article>
+            <P>Lorem, ipsum dolor.</P>
+            <P>Et, a iste!</P>
+        </article>
+        <article>
+            <P>Lorem, ipsum dolor.</P>
+            <P>Unde, eligendi delectus.</P>
+        </article>
+    </section>
+    <h1>Contacto</h1>
+    <footer>
+        <nav><a href="index.html">Inicio</a><a href="css02.html">CSS-02</a><a href="css03.html">CSS-03</a></nav>
+    </footer>
+</body>
+
+</html>
+
+>>>>>>> 5980ab701d439ee91c70cd1f3a52bb65c34ee010

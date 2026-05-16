@@ -1,0 +1,75 @@
+/* Header fijo */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: darkred;
+  color: white;
+  padding: 15px;
+  z-index: 1000;
+}
+
+/* Ajustar el contenido para que no quede debajo */
+main {
+  padding-top: 80px; /* espacio igual o mayor a la altura del header */
+}
+
+/* Navegación */
+nav a {
+  margin: 0 25px;
+  color: white;
+  text-decoration: none;
+}
+
+/* Scroll hacia secciones con espacio */
+html {
+  scroll-padding-top: 80px; /* evita que los títulos queden ocultos al hacer clic en el menú */
+}
+
+
+
+/* FOTO PERFIL */
+.perfil {
+    width: clamp(180px, 25vw, 380px);
+    height: clamp(180px, 25vw, 380px);
+    margin: 0 auto;   /* centra horizontalmente */
+}
+
+.perfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    border-radius: 50%;
+    border: 7px solid;
+    color:rgb(226, 211, 211);
+}
+
+.perfil:hover img {
+    transform: scale(1.1);
+}
+
+/* SECCIONES */
+section{
+    background: rgb(207, 26, 26); /* Fondo celeste claro */
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* ARTÍCULOS */
+article{
+    margin-top: 10px;
+    padding: 10px;
+    background: #923d37; /* Celeste medio */
+    border-radius: 5px;
+    color: #f1e3e2;
+}
+
+
+.mapa {
+  display: flex;        /* activa flexbox */
+  justify-content: center; /* centra horizontalmente */
+  margin-top: 10px;
+}
